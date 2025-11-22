@@ -1,0 +1,12 @@
+# Evita enviar dados sensíveis
+.env
+*.log
+/backups/
+/sensitive-data/
+/tmp/
+/*.sqlite
+
+# Diretorias de build
+node_modules/
+.next/
+dist/
