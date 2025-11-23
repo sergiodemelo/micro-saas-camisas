@@ -189,3 +189,63 @@ Características-chave da visão:
 Este planejamento documenta o **rumo do projeto**, garantindo clareza, organização e foco nas próximas etapas.  
 Ele deverá ser atualizado semanalmente ou sempre que novas funcionalidades forem adicionadas ou ajustadas.
 
+# Planejamento Futuro — Atualizado em 23/11/2025 – 15:45
+
+## Fase atual (concluída)
+- Estrutura completa de banco criada para suportar:
+  - pedidos
+  - itens do cliente
+  - pedidos ao fornecedor
+  - regras de frete
+  - cálculos de custo e lucro
+
+## Próxima Fase (a iniciar)
+### Fase 4 — Interfaces Frontend
+
+1. **Interface do Vendedor**
+   - Criar pedido do cliente
+   - Adicionar itens
+   - Calcular totais
+   - Selecionar modalidade de frete (aguardar lote / exclusivo)
+   - Aplicar frete fixo por dolar (quando exclusivo)
+   - Visualizar itens e pedidos salvos
+
+2. **Interface Interna (Financeiro)**
+   - Registrar custo por pedido ao fornecedor
+   - Preencher:
+     - valor pago em BRL
+     - taxas ML
+     - alfândega
+     - IOF / remessa
+   - Gerar dólar efetivo
+   - Distribuir frete proporcional
+   - Calcular margem real
+
+3. **Interface de Consolidação**
+   - Ver relacionamento item do cliente ↔ item fornecedor
+   - Conferir lucro por item
+   - Analítica por pedido, cliente e fornecedor
+
+---
+
+## Fase 5 — Automação
+- Cálculo automático do dólar efetivo
+- Distribuição automática das taxas
+- Automação de frete
+- Vinculação automática dos itens do cliente ao pedido real
+
+---
+
+## Fase 6 — Dashboards
+- Margem por pedido
+- Margem por cliente
+- Ranking produtos
+- Perdas & ajustes
+
+---
+
+## Fase 7 — Operação e Escala
+- Multi-loja completo
+- Multi-fornecedor
+- Módulo de afiliados
+- Cupons e promoções

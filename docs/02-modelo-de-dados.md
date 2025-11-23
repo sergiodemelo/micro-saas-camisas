@@ -274,3 +274,122 @@ Histórico consolidado de fluxos inteligentes gerados pela IA.
 Este documento descreve todo o modelo de dados do sistema, servindo como referência técnica oficial para desenvolvimento, testes, integração de IA, API e front-end.
 
 Qualquer nova tabela, ajuste de campo ou relacionamento deverá ser registrado aqui para manter a coerência e evolução futura do projeto.
+# Modelo de Dados — Atualizado em 23/11/2025 – 15:45
+
+## ENTIDADES PRINCIPAIS
+
+### **1. lojas**
+Armazena informações básicas da loja:
+- nome_fantasia  
+- razao_social  
+- cnpj  
+- email_contato  
+- nome_proprietario  
+- contato_proprietario  
+
+---
+
+### **2. clientes**
+Armazena os dados do cliente final:
+- nome  
+- whatsapp  
+- email  
+- cpf  
+- cep  
+- endereco  
+- complemento  
+- loja_id  
+
+---
+
+### **3. fornecedor_frete_regras**
+Regras de frete por fornecedor.
+
+Campos:
+- fornecedor_id  
+- min_itens  
+- max_itens  
+- frete_total_usd  
+- frete_gratis  
+
+---
+
+### **4. pedidos_cliente**
+Pedidos registrados pelo vendedor.
+
+Campos:
+- loja_id  
+- cliente_id  
+- fornecedor_id  
+- modalidade_frete  
+- dolar_frete_brl  
+- frete_cobrado_brl  
+- total_itens  
+- total_venda_brl  
+- status  
+
+Relacionamentos:
+- 1 cliente → N pedidos_cliente  
+- 1 pedido_cliente → N itens_pedido_cliente  
+
+---
+
+### **5. itens_pedido_cliente**
+Itens que o cliente comprou.
+
+Campos:
+- pedido_cliente_id  
+- cliente_id  
+- produto_id  
+- categoria  
+- tamanho  
+- quantidade  
+- preco_venda_brl  
+
+---
+
+### **6. pedidos_fornecedor**
+Pedidos reais enviados ao fornecedor.
+
+Campos:
+- fornecedor_id  
+- loja_id  
+- total_usd_itens  
+- frete_usd_total  
+- valor_pago_brl  
+- taxa_ml_brl  
+- taxa_alfandega_brl  
+- outros_custos_brl  
+- dolar_efetivo  
+- codigo_rastreio  
+
+Relacionamentos:
+- 1 pedido_fornecedor → N itens_pedido_fornecedor  
+
+---
+
+### **7. itens_pedido_fornecedor**
+Representa cada item real comprado do fornecedor.
+
+Campos:
+- pedido_fornecedor_id  
+- pedido_cliente_id  
+- cliente_id  
+- produto_id  
+- valor_usd_item  
+- frete_usd_item  
+- custo_brl_item  
+- preco_venda_brl  
+- lucro_brl_item  
+- margem_real  
+
+---
+
+## VISÃO GERAL DO FLUXO
+
+Cliente faz pedido → vendedor registra → itens são armazenados →  
+quando há compra no fornecedor → cria-se pedidos_fornecedor →  
+itens são vinculados e custos calculados → lucro e margem consolidados.
+
+Próximo passo: construir as interfaces do frontend para operar esse fluxo.
+
